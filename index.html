@@ -1,1 +1,634 @@
-<h1>나의 새로운 포트폴리오 페이지</h1>
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포트폴리오 | 풀스택 & AI 엔지니어</title>
+    
+    <!-- Tailwind CSS (스타일링용) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome (아이콘용) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Web Font (Pretendard) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#c084fc', // 연보라 (Purple 400)
+                            blue: '#60a5fa',   // 하늘색 (Blue 400)
+                            green: '#6ee7b7',  // 민트색 (Emerald 300)
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #ffffff; /* 하얀 바탕 */
+            color: #1e293b; /* Slate 800 (기본 텍스트) */
+        }
+        
+        /* 스크롤 시 나타나는 애니메이션 (JS와 연동) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 타이핑 커서 깜빡임 효과 */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #60a5fa;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* 네비게이션 바 블러 효과 */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-100 selection:text-purple-900 relative">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full top-0 z-50 glass-nav border-b border-slate-200 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-brand-purple via-brand-blue to-brand-green">
+                        DevPortfolio.
+                    </a>
+                </div>
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-slate-600 hover:text-brand-purple transition-colors font-medium">Home</a>
+                    <a href="#about" class="text-slate-600 hover:text-brand-purple transition-colors font-medium">About</a>
+                    <a href="#expertise" class="text-slate-600 hover:text-brand-purple transition-colors font-medium">Expertise</a>
+                    <a href="#projects" class="text-slate-600 hover:text-brand-purple transition-colors font-medium">Projects</a>
+                    <a href="#contact" class="text-slate-600 hover:text-brand-purple transition-colors font-medium">Contact</a>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-purple focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 shadow-lg absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-slate-600 hover:text-brand-purple hover:bg-slate-50 rounded-md font-medium">Home</a>
+                <a href="#about" class="block px-3 py-2 text-slate-600 hover:text-brand-purple hover:bg-slate-50 rounded-md font-medium">About</a>
+                <a href="#expertise" class="block px-3 py-2 text-slate-600 hover:text-brand-purple hover:bg-slate-50 rounded-md font-medium">Expertise</a>
+                <a href="#projects" class="block px-3 py-2 text-slate-600 hover:text-brand-purple hover:bg-slate-50 rounded-md font-medium">Projects</a>
+                <a href="#contact" class="block px-3 py-2 text-slate-600 hover:text-brand-purple hover:bg-slate-50 rounded-md font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden bg-slate-50">
+        <!-- Background decorative elements -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-emerald-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center text-left">
+            <p class="text-brand-blue font-bold tracking-wide mb-4 reveal">Hello, World! I am</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 reveal text-slate-800">
+                데이터로 가치를 창출하는<br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-brand-blue to-brand-green">개발자 '홍채영'</span> 입니다.
+            </h1>
+            <div class="text-xl md:text-2xl text-slate-500 mb-8 h-8 reveal">
+                I build <span id="typing-text" class="text-slate-800 font-bold"></span><span class="cursor">&nbsp;</span>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 reveal">
+                <a href="#projects" class="px-8 py-3 bg-gradient-to-r from-brand-purple via-brand-blue to-brand-green hover:opacity-90 text-white rounded-full font-bold transition-all duration-300 shadow-lg shadow-brand-blue/30">
+                    프로젝트 보기
+                </a>
+                <a href="#contact" class="px-8 py-3 bg-white border border-slate-300 hover:border-brand-purple hover:text-brand-purple text-slate-600 rounded-full font-bold transition-colors duration-300 shadow-sm">
+                    연락하기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Core Strengths) -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">나의 핵심 경쟁력</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-brand-purple to-brand-blue mx-auto rounded"></div>
+                <p class="mt-6 text-slate-500 max-w-2xl mx-auto">
+                    단순한 코딩을 넘어, 비즈니스 문제를 해결하고 사용자에게 가치를 전달하는 데 집중합니다.
+                    저를 움직이는 3가지 원동력입니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Strength 1: Passion -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-purple/40 transition-all duration-300 hover:-translate-y-2 reveal">
+                    <div class="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center mb-6 border border-purple-100">
+                        <i class="fas fa-fire text-2xl text-brand-purple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-800">열정 (Passion)</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        새로운 기술 트렌드(AI, Cloud)를 끊임없이 학습하고 프로젝트에 적용합니다. 성장에 대한 목마름이 저를 더 나은 개발자로 만듭니다.
+                    </p>
+                </div>
+
+                <!-- Strength 2: Positivity -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-blue/40 transition-all duration-300 hover:-translate-y-2 reveal">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 border border-blue-100">
+                        <i class="fas fa-sun text-2xl text-brand-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-800">긍정 (Positivity)</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        '안 되는 이유'보다 '되게 하는 방법'을 찾습니다. 팀원들과 원활하게 소통하며 긍정적인 에너지로 프로젝트의 시너지를 이끌어냅니다.
+                    </p>
+                </div>
+
+                <!-- Strength 3: Perseverance -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-green/40 transition-all duration-300 hover:-translate-y-2 reveal">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 border border-emerald-100">
+                        <i class="fas fa-mountain text-2xl text-brand-green"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-800">인내 (Perseverance)</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        복잡한 데이터 분석, 어려운 버그 앞에서도 포기하지 않습니다. 원인을 끝까지 파고들어 기어코 안정적인 해결책을 구현해 냅니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise / Skills Section -->
+    <section id="expertise" class="py-20 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">전문 분야 & 기술 스택</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-brand-blue to-brand-green mx-auto rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Tech Categories -->
+                <div class="space-y-8 reveal">
+                    <!-- AI & Data -->
+                    <div>
+                        <h3 class="text-lg font-bold flex items-center gap-2 mb-4 text-slate-800">
+                            <i class="fas fa-brain text-brand-purple"></i> 인공지능 & 데이터 분석
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-purple hover:text-brand-purple transition-colors">Python</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-purple hover:text-brand-purple transition-colors">TensorFlow / PyTorch</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-purple hover:text-brand-purple transition-colors">Scikit-learn</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-purple hover:text-brand-purple transition-colors">Pandas / SQL</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-purple hover:text-brand-purple transition-colors">LLM Prompting</span>
+                        </div>
+                    </div>
+
+                    <!-- Cloud -->
+                    <div>
+                        <h3 class="text-lg font-bold flex items-center gap-2 mb-4 text-slate-800">
+                            <i class="fas fa-cloud text-brand-blue"></i> Azure 클라우드 & DevOps
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-blue hover:text-brand-blue transition-colors">Microsoft Azure</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-blue hover:text-brand-blue transition-colors">Azure Machine Learning</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-blue hover:text-brand-blue transition-colors">Docker / Kubernetes</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-blue hover:text-brand-blue transition-colors">CI/CD (GitHub Actions)</span>
+                        </div>
+                    </div>
+
+                    <!-- Full Stack -->
+                    <div>
+                        <h3 class="text-lg font-bold flex items-center gap-2 mb-4 text-slate-800">
+                            <i class="fas fa-layer-group text-brand-green"></i> 풀스택 개발
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-green hover:text-brand-green transition-colors">React / Vue.js</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-green hover:text-brand-green transition-colors">Node.js / Express</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-green hover:text-brand-green transition-colors">Java Spring Boot</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-full text-sm font-medium text-slate-600 hover:border-brand-green hover:text-brand-green transition-colors">HTML / Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description / Graphic -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-lg flex flex-col justify-center reveal relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-gradient-to-br from-purple-50 to-blue-50 rounded-full opacity-50 pointer-events-none"></div>
+                    <i class="fas fa-quote-left text-3xl text-brand-blue/30 mb-4"></i>
+                    <p class="text-lg text-slate-700 leading-relaxed italic mb-6 relative z-10">
+                        "프론트엔드부터 백엔드 인프라 구축까지 전체 사이클을 이해하고 있습니다. 특히 데이터를 수집, 분석하여 <strong>AI 모델을 만들고, 이를 Azure 클라우드 위에 안정적인 웹 서비스로 배포</strong>하는 파이프라인 구축에 강점을 가지고 있습니다."
+                    </p>
+                    <div class="flex items-center gap-4 relative z-10">
+                        <div class="w-12 h-12 bg-gradient-to-br from-brand-purple to-brand-blue rounded-full flex items-center justify-center font-bold text-white shadow-md">
+                            ME
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-800">Full Stack & AI Architect</div>
+                            <div class="text-sm text-slate-500">엔드투엔드(End-to-End) 솔루션 지향</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">프로젝트 포트폴리오</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-brand-purple via-brand-blue to-brand-green mx-auto rounded"></div>
+                <p class="mt-6 text-slate-500">클라우드와 AI를 결합한 주요 풀스택 프로젝트입니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-purple/50 transition-all duration-300 group reveal">
+                    <div class="h-48 bg-slate-50 relative overflow-hidden flex items-center justify-center border-b border-slate-100">
+                        <i class="fas fa-chart-network text-5xl text-brand-purple/40 group-hover:scale-110 group-hover:text-brand-purple transition-all duration-500"></i>
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-xs font-bold px-2 py-1 bg-purple-50 text-brand-purple rounded border border-purple-100">AI</span>
+                            <span class="text-xs font-bold px-2 py-1 bg-blue-50 text-brand-blue rounded border border-blue-100">Azure</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">실시간 데이터 예측 대시보드</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
+                            Azure IoT Hub를 통해 수집된 센서 데이터를 실시간으로 스트리밍하고, 머신러닝 모델을 적용하여 이상 징후를 예측하는 풀스택 웹 대시보드입니다. React와 Node.js를 활용했습니다.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-sm text-brand-purple hover:text-purple-700 font-bold"><i class="fab fa-github mr-1"></i> GitHub</a>
+                            <a href="#" class="text-sm text-slate-500 hover:text-brand-blue font-bold"><i class="fas fa-external-link-alt mr-1"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-blue/50 transition-all duration-300 group reveal">
+                    <div class="h-48 bg-slate-50 relative overflow-hidden flex items-center justify-center border-b border-slate-100">
+                        <i class="fas fa-robot text-5xl text-brand-blue/40 group-hover:scale-110 group-hover:text-brand-blue transition-all duration-500"></i>
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-xs font-bold px-2 py-1 bg-sky-50 text-sky-600 rounded border border-sky-100">Full Stack</span>
+                            <span class="text-xs font-bold px-2 py-1 bg-indigo-50 text-indigo-500 rounded border border-indigo-100">ML</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">맞춤형 추천 챗봇 서비스</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
+                            사용자의 텍스트 데이터를 자연어 처리(NLP)로 분석하여 맞춤형 상품을 추천하는 웹 애플리케이션입니다. Python(FastAPI) 백엔드와 Vue.js를 사용하여 직관적인 UI를 구성했습니다.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-sm text-brand-blue hover:text-blue-700 font-bold"><i class="fab fa-github mr-1"></i> GitHub</a>
+                            <a href="#" class="text-sm text-slate-500 hover:text-brand-purple font-bold"><i class="fas fa-external-link-alt mr-1"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl hover:border-brand-green/50 transition-all duration-300 group reveal">
+                    <div class="h-48 bg-slate-50 relative overflow-hidden flex items-center justify-center border-b border-slate-100">
+                        <i class="fas fa-server text-5xl text-brand-green/40 group-hover:scale-110 group-hover:text-brand-green transition-all duration-500"></i>
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-xs font-bold px-2 py-1 bg-emerald-50 text-brand-green rounded border border-emerald-100">Cloud</span>
+                            <span class="text-xs font-bold px-2 py-1 bg-teal-50 text-teal-600 rounded border border-teal-100">Data</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-800">빅데이터 파이프라인 아키텍처</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
+                            대규모 로그 데이터를 Azure Data Factory와 Databricks를 이용해 정제 및 분석하고, 결과를 시각화하는 전체 파이프라인을 자동화한 프로젝트입니다. 안정적인 인프라 구축에 중점을 두었습니다.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-sm text-brand-green hover:text-emerald-700 font-bold"><i class="fab fa-github mr-1"></i> GitHub</a>
+                            <a href="#" class="text-sm text-slate-500 hover:text-brand-blue font-bold"><i class="fas fa-file-alt mr-1"></i> Architecture</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Project Idea Generator ✨ -->
+            <div class="mt-16 bg-gradient-to-r from-purple-50 via-blue-50 to-emerald-50 border border-brand-blue/20 rounded-2xl p-8 reveal relative overflow-hidden group shadow-lg">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/60 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+                <div class="text-center mb-6 relative z-10">
+                    <h3 class="text-2xl font-bold mb-2 text-slate-800"><i class="fas fa-magic text-brand-purple mr-2"></i>✨ AI 맞춤형 프로젝트 제안</h3>
+                    <p class="text-slate-600">당신이 속한 산업 분야를 알려주시면, AI와 클라우드를 활용해 비즈니스 문제를 해결할 아이디어를 즉석에서 제안해 드립니다.</p>
+                </div>
+                <div class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto relative z-10">
+                    <input type="text" id="industry-input" placeholder="예: 헬스케어, 금융, 이커머스, 에듀테크..." class="flex-1 bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all shadow-sm">
+                    <button id="btn-generate-idea" class="px-6 py-3 bg-gradient-to-r from-brand-purple to-brand-blue hover:from-purple-500 hover:to-blue-500 text-white rounded-lg font-bold transition-all flex items-center justify-center whitespace-nowrap shadow-md shadow-brand-blue/30">
+                        <span>✨ 아이디어 생성</span>
+                    </button>
+                </div>
+                <div id="idea-result-container" class="hidden mt-6 max-w-2xl mx-auto bg-white rounded-lg p-6 border border-slate-200 shadow-inner relative z-10 min-h-[100px]">
+                    <div id="idea-loading" class="hidden absolute inset-0 bg-white/90 rounded-lg flex flex-col items-center justify-center z-20 backdrop-blur-sm">
+                        <i class="fas fa-circle-notch fa-spin text-brand-blue text-3xl mb-3"></i>
+                        <p class="text-sm text-brand-purple font-bold mt-2 animate-pulse">Gemini AI가 아이디어를 구상하고 있습니다...</p>
+                    </div>
+                    <div id="idea-content" class="text-slate-700 leading-relaxed font-medium"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative overflow-hidden bg-slate-50 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">함께 일하고 싶으신가요?</h2>
+            <p class="text-slate-600 mb-8 max-w-2xl mx-auto">
+                새로운 도전을 기다리고 있습니다. 데이터 분석, AI 모델링, 클라우드 인프라, 웹 개발 등 어떤 분야든 열정적으로 기여할 준비가 되어있습니다.
+            </p>
+            
+            <!-- AI Email Drafter ✨ -->
+            <div class="max-w-2xl mx-auto mb-16 bg-white p-8 rounded-2xl border border-slate-200 text-left shadow-xl relative">
+                <div class="absolute -top-4 -right-4 bg-gradient-to-r from-brand-purple to-brand-green text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg transform rotate-12 border border-white">
+                    Powered by Gemini AI
+                </div>
+                <h3 class="text-xl font-bold mb-2 flex items-center text-slate-800"><span class="mr-2 text-2xl">✨</span> AI 비즈니스 이메일 작성기</h3>
+                <p class="text-sm text-slate-500 mb-5">어떤 목적으로 연락하고 싶으신가요? 키워드만 적어주시면 AI가 정중하고 프로페셔널한 이메일 초안을 작성해 드립니다.</p>
+                
+                <textarea id="email-keyword-input" rows="2" placeholder="예: 3개월 웹 개발 프로젝트 외주 구인, 챗봇 솔루션 컨설팅 문의, 채용 면접 제안" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-purple/50 focus:border-brand-purple transition-all mb-4 resize-none shadow-sm"></textarea>
+                
+                <button id="btn-draft-email" class="w-full py-3.5 bg-white border border-slate-300 hover:border-brand-purple text-slate-700 hover:text-brand-purple rounded-lg font-bold transition-all shadow-sm flex items-center justify-center group">
+                    <span class="group-hover:scale-105 transition-transform">✨ AI로 초안 작성하기</span>
+                </button>
+                
+                <div id="email-result-container" class="hidden mt-6">
+                    <div class="relative">
+                        <textarea id="email-draft-result" rows="6" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-4 text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all resize-none text-sm leading-relaxed shadow-inner"></textarea>
+                        <div id="email-loading" class="hidden absolute inset-0 bg-white/90 rounded-lg flex flex-col items-center justify-center backdrop-blur-sm">
+                            <i class="fas fa-magic text-brand-purple text-2xl mb-2 animate-bounce"></i>
+                            <span class="text-sm text-brand-purple font-bold">이메일을 정중하게 가다듬는 중...</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 mt-4">
+                        <button id="btn-copy-email" class="flex-1 py-2.5 bg-white hover:bg-slate-50 text-slate-700 rounded-lg font-bold text-sm transition-colors border border-slate-300 shadow-sm">
+                            <i class="fas fa-copy mr-1.5 text-slate-400"></i> 복사하기
+                        </button>
+                        <a id="btn-send-email" href="mailto:your.email@example.com" class="flex-1 py-2.5 bg-gradient-to-r from-brand-blue to-brand-green hover:from-blue-500 hover:to-emerald-400 text-white rounded-lg font-bold text-sm transition-all text-center shadow-md shadow-brand-green/30">
+                            <i class="fas fa-paper-plane mr-1.5"></i> 메일 클라이언트 열기
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-500 hover:text-brand-purple hover:border-brand-purple hover:shadow-md transition-all">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-500 hover:text-brand-blue hover:border-brand-blue hover:shadow-md transition-all">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-500 hover:text-brand-green hover:border-brand-green hover:shadow-md transition-all">
+                    <i class="fas fa-blog text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-8 border-t border-slate-200 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 Developer 홍채영 Portfolio. All rights reserved.</p>
+        <p class="mt-2">Built with HTML, Tailwind CSS & Vanilla JS. Hosted on GitHub Pages.</p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // 1. 모바일 메뉴 토글
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. 타이핑 애니메이션
+        const textArray = [
+            "Full Stack Web Apps", 
+            "Azure Cloud Solutions", 
+            "Machine Learning Models", 
+            "Data Analysis Pipelines"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById("typing-text");
+        let isDeleting = false;
+
+        function type() {
+            const currentText = textArray[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000; // 단어 완성 후 대기 시간
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % textArray.length;
+                typeSpeed = 500; // 다음 단어 시작 전 대기 시간
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+        
+        // 초기 실행 지연
+        setTimeout(type, 1000);
+
+        // 3. 스크롤 애니메이션 (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // 한 번 애니메이션 후 해제
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+
+        // 4. 네비게이션 바 스크롤 시 배경 변경
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
+
+        // 5. Gemini API 통합 연동 로직 ✨
+        const apiKey = ""; // 런타임 환경에서 자동으로 주입됨
+
+        async function fetchGeminiAPI(prompt, systemPrompt = "") {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            const maxRetries = 5;
+            const baseDelay = 1000;
+
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API Error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "결과를 생성할 수 없습니다.";
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        console.error("Gemini API Error after retries:", error);
+                        return "API 응답에 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
+                    }
+                    await new Promise(res => setTimeout(res, baseDelay * Math.pow(2, i)));
+                }
+            }
+        }
+
+        // 5-1. ✨ AI 맞춤형 프로젝트 제안 로직
+        const btnGenerateIdea = document.getElementById('btn-generate-idea');
+        const industryInput = document.getElementById('industry-input');
+        const ideaResultContainer = document.getElementById('idea-result-container');
+        const ideaContent = document.getElementById('idea-content');
+        const ideaLoading = document.getElementById('idea-loading');
+
+        btnGenerateIdea.addEventListener('click', async () => {
+            const industry = industryInput.value.trim();
+            if (!industry) {
+                industryInput.placeholder = "산업 분야를 먼저 입력해주세요! (필수)";
+                industryInput.classList.add('border-red-500');
+                setTimeout(() => industryInput.classList.remove('border-red-500'), 2000);
+                return;
+            }
+
+            ideaResultContainer.classList.remove('hidden');
+            ideaLoading.classList.remove('hidden');
+            ideaContent.innerHTML = "";
+
+            const systemPrompt = "당신은 세계적인 수준의 AI 및 클라우드 아키텍트입니다. 사용자가 제시한 산업 분야의 고질적인 문제를 해결할 수 있는, Azure와 머신러닝을 활용한 혁신적이고 구체적인 풀스택 프로젝트 아이디어를 3~4문장으로 제안해주세요. 전문적이고 설득력 있는 어조로 '제가 이런 프로젝트를 구축해 드릴 수 있습니다'라는 뉘앙스를 풍기며 한국어로 작성하세요.";
+            const userPrompt = `산업 분야: ${industry}`;
+
+            const resultText = await fetchGeminiAPI(userPrompt, systemPrompt);
+            
+            // 결과 텍스트의 줄바꿈을 HTML 태그로 변환하여 출력
+            ideaContent.innerHTML = resultText.replace(/\n/g, '<br>');
+            ideaLoading.classList.add('hidden');
+        });
+
+        // 5-2. ✨ AI 이메일 초안 작성기 로직
+        const btnDraftEmail = document.getElementById('btn-draft-email');
+        const emailKeywordInput = document.getElementById('email-keyword-input');
+        const emailResultContainer = document.getElementById('email-result-container');
+        const emailDraftResult = document.getElementById('email-draft-result');
+        const emailLoading = document.getElementById('email-loading');
+        const btnCopyEmail = document.getElementById('btn-copy-email');
+        const btnSendEmail = document.getElementById('btn-send-email');
+
+        btnDraftEmail.addEventListener('click', async () => {
+            const keyword = emailKeywordInput.value.trim();
+            if (!keyword) {
+                emailKeywordInput.placeholder = "어떤 내용으로 연락하실지 키워드를 적어주세요! (필수)";
+                emailKeywordInput.classList.add('border-red-500');
+                setTimeout(() => emailKeywordInput.classList.remove('border-red-500'), 2000);
+                return;
+            }
+
+            emailResultContainer.classList.remove('hidden');
+            emailLoading.classList.remove('hidden');
+            emailDraftResult.value = "";
+
+            const systemPrompt = "당신은 프로페셔널한 비즈니스 커뮤니케이션 전문가입니다. 사용자가 제공한 키워드를 바탕으로, 풀스택 & AI 개발자인 '홍채영'에게 보내는 채용 제안, 외주 문의, 또는 네트워킹 이메일 초안을 한국어로 정중하게 작성해주세요. 첫 줄에 반드시 '제목: [적절한 제목]' 형식을 포함하고, 본문은 5~6문장 내외로 간결하고 예의 바르게 작성하세요.";
+            const userPrompt = `문의 내용 키워드: ${keyword}`;
+
+            const resultText = await fetchGeminiAPI(userPrompt, systemPrompt);
+            
+            const finalDraft = resultText.trim();
+            emailDraftResult.value = finalDraft;
+            emailLoading.classList.add('hidden');
+
+            // 메일 클라이언트 열기 링크 설정 (mailto)
+            let subject = "포트폴리오를 통한 프로젝트 제안 문의";
+            let body = finalDraft;
+            
+            // 정규식으로 '제목:' 부분 파싱
+            const subjectMatch = finalDraft.match(/제목:\s*(.*)/);
+            if (subjectMatch) {
+                subject = subjectMatch[1].trim();
+                // 본문에서는 제목 줄 제거
+                body = finalDraft.replace(/제목:\s*(.*)\n*/, '').trim(); 
+            }
+            
+            btnSendEmail.href = `mailto:your.email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+
+        // 텍스트 클립보드 복사 기능
+        btnCopyEmail.addEventListener('click', () => {
+            emailDraftResult.select();
+            document.execCommand('copy');
+            
+            const originalHTML = btnCopyEmail.innerHTML;
+            btnCopyEmail.innerHTML = '<i class="fas fa-check text-brand-green mr-1.5"></i> 복사 완료!';
+            btnCopyEmail.classList.add('border-brand-green', 'text-brand-green', 'bg-emerald-50');
+            btnCopyEmail.classList.remove('text-slate-700', 'bg-white', 'border-slate-300');
+            
+            setTimeout(() => {
+                btnCopyEmail.innerHTML = originalHTML;
+                btnCopyEmail.classList.remove('border-brand-green', 'text-brand-green', 'bg-emerald-50');
+                btnCopyEmail.classList.add('text-slate-700', 'bg-white', 'border-slate-300');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
